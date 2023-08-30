@@ -1,0 +1,11 @@
+<div id="<%= dom_id post %>">
+  <div>
+    <strong>Title:</strong>
+    <%= post.title %>
+  </div>
+
+  <div>
+    <strong>Autor:</strong>
+    <%= User.find_by_id(post.user_id).email%>
+  </div>
+</div>

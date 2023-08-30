@@ -1,0 +1,17 @@
+<% post = Post.find_by_id(params[:id]) %>
+
+<h1> Details screen for: <%= post.title %> </h1>
+
+<h2> Autor: <%= User.find_by_id(post.user_id).email%> </h2>
+
+<%= post.body %>
+
+<div>
+  <%= link_to "Back to dashboard", "/dashboards/index" %>
+</div>
+
+<% if post.user_id == session[:user_id] then%>
+  <div>
+    <%= link_to "Edit this post", edit_post_path(post) %>
+  </div>
+<% end %>

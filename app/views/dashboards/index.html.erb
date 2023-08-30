@@ -1,0 +1,15 @@
+<h1>Welcome <%= if @user then @user.email end %></h1>
+<div>
+  <%= if @user then link_to "New post", "/posts/new" end %>
+</div>
+<h1>Posts</h1>
+<br>
+<div id="posts">
+    <% @posts.each do |post| %>
+        <%= render post %>
+        <div>
+          <%= link_to "Show details", post %>
+        </div>
+        <br>
+    <% end %>
+</div>
