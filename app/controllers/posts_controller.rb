@@ -25,12 +25,17 @@ class PostsController < ApplicationController
 
     def update
       @post = Post.find_by_id(params[:id])
-      if @post.update(post_params)
-        flash[:alert] = "Post updated"
-        redirect_to "/dashboards/index"
+      if session[:user_id] == @post.user_id
+        if @post.update(post_params)
+          flash[:alert] = "Post updated"
+          redirect_to "/dashboards/index"
+        else
+          flash[:alert] = "Couldn't update the post"
+          render :new, status: :unprocessable_entity
+        end
       else
-        flash[:alert] = "Couldn't update the post"
-        render :new, status: :unprocessable_entity
+        flash[:alert] = "Logged user is not the owner of the post"
+        redirect_to "/dashboards/index"
       end
     end
     

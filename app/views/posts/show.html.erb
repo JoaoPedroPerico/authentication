@@ -10,7 +10,7 @@
   <%= link_to "Back to dashboard", "/dashboards/index" %>
 </div>
 
-<% if post.user_id == session[:user_id] then%>
+<% if post.user_id == session[:user_id] then %>
   <div>
     <%= link_to "Edit this post", edit_post_path(post) %>
   </div>
