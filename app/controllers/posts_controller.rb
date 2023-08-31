@@ -21,6 +21,10 @@ class PostsController < ApplicationController
 
     def edit
       @post = Post.find_by_id(params[:id])
+      if session[:user_id] != @post.user_id
+        flash[:alert] = "Logged user is not the owner of the post"
+        redirect_to "/dashboards/index"
+      end
     end
 
     def update
